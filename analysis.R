@@ -6,8 +6,8 @@ library(dplyr)
 library(plotly)
 library(usmap)
 
-trend_of_inc <- read.csv('/Users/karen/Desktop/SU22/INFO 201/a3---data-visualization-and-applications-ShufaW/A3_data/incarceration_trends.csv')
-pop_of_jail_df <- read.csv('/Users/karen/Desktop/SU22/INFO 201/a3---data-visualization-and-applications-ShufaW/A3_data/year-end-prison-2021.csv')
+trend_of_inc <- read.csv(url("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv"))
+pop_of_jail_df <- read.csv(url("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/year-end-prison-2021.csv"))
 
 # For each race in 2017, in which state do they have the highest prison population?
 state_2017<- trend_of_inc %>%
@@ -47,11 +47,9 @@ gender_jail_df <- state_2017 %>%
 gender_jail_df_tailor <- na.omit(gender_jail_df)
 
 max_male_2017 <- unlist(gender_jail_df_tailor[gender_jail_df_tailor$male_jail_pop == max(gender_jail_df_tailor$male_jail_pop), 'state'])
-print(max_male_2017)
 
 # Which state has the most female in prison in 2017?
 max_female_2017 <- unlist(gender_jail_df_tailor[gender_jail_df_tailor$female_jail_pop == max(gender_jail_df_tailor$female_jail_pop), 'state'])
-print(max_female_2017)
 
 # Which state has the least and most population in prison in 2019?
 jail_population <- pop_of_jail_df[8:57, 2:5]
